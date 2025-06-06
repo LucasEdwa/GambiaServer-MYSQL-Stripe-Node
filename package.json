@@ -1,0 +1,27 @@
+{
+  "name": "gambiaserver-mysql-stripe-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node-dev index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/cors": "^2.8.18",
+    "@types/express": "^5.0.2",
+    "@types/express-fileupload": "^1.5.1",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/node": "^22.15.30",
+    "dotenv": "^16.0.3",
+    "stripe": "^12.0.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "mysql2": "^3.14.1",
+    "winston": "^3.17.0"
+  }
+}
