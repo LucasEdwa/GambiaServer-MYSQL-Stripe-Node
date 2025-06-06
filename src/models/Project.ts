@@ -10,7 +10,8 @@ export class Project {
     public organization: string,
     public misson: string,
     public description: string,
-    public focusArea: string // public imageURL: string | string[]
+    public focusArea: string, // public imageURL: string | string[]
+    public pimid: string
   ) {}
 
   async setupProject(): Promise<void> {
@@ -21,7 +22,8 @@ export class Project {
         organization VARCHAR(50),
         misson VARCHAR(100),
         description VARCHAR(1000),
-        focusArea VARCHAR(1000)
+        focusArea VARCHAR(1000),
+        pimid VARCHAR(50) UNIQUE
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
       `CREATE TABLE IF NOT EXISTS Images (
         id INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,

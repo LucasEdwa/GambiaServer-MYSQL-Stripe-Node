@@ -33,7 +33,7 @@ process.on("unhandledRejection", (reason) => {
   const user = new User(1, "", "", "");
   await user.setupUser();
 
-  const project = new Project(1, "", "", "", "", "");
+  const project = new Project(1, "", "", "", "", "", "");
   await project.setupProject();
 
   const donate = new Donate(1, 0, "", 1, "", "", "", "", "", false);
