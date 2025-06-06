@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import winston from 'winston';
-
 import express, { Express } from 'express';
+
 const app: Express = express();
 
 app.get('/', (req, res) => {
@@ -14,10 +14,15 @@ app.listen(3000, () => {
 });
 
 // Ensure logs directory exists
-const logsDir = path.join(__dirname, 'logs');
-if (!fs.existsSync(logsDir)) {
-    fs.mkdirSync(logsDir);
+function ensureLogsDir() {
+    const logsDir = path.join(__dirname, 'logs');
+    if (!fs.existsSync(logsDir)) {
+        fs.mkdirSync(logsDir);
+    }
+    return logsDir;
 }
+
+const logsDir = ensureLogsDir();
 
 // Logger configuration
 const logger = winston.createLogger({
