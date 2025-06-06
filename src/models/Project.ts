@@ -22,12 +22,13 @@ export class Project {
         misson VARCHAR(100),
         description VARCHAR(1000),
         focusArea VARCHAR(1000)
-         )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
       `CREATE TABLE IF NOT EXISTS Images (
-         id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-         imageURL VARCHAR(100),
-         projectId INT,
-         FOREIGN KEY (projectId) REFERENCES Projects(id) ON DELETE CASCADE)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
+        id INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
+        imageURL VARCHAR(100),
+        projectId INT UNSIGNED,
+        FOREIGN KEY (projectId) REFERENCES Projects(id) ON DELETE CASCADE
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
     ];
     for (const sql of sqlStatements) {
       try {
