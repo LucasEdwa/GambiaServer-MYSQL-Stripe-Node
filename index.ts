@@ -1,7 +1,12 @@
-import fs from 'fs';
+import { fileURLToPath } from 'url';
 import path from 'path';
+import fs from 'fs';
 import winston from 'winston';
 import express, { Express } from 'express';
+
+// Polyfill __dirname for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app: Express = express();
 
