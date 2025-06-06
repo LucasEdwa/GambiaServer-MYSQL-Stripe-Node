@@ -1,4 +1,4 @@
-import { pool } from '../database/connection';
+import { pool } from "../database/connection";
 
 export class User {
   constructor(
@@ -10,10 +10,9 @@ export class User {
     public updatedAt: Date = new Date()
   ) {}
 
-
-  async setupUser (): Promise<void> {
+  async setupUser(): Promise<void> {
     const sqlStatements = [
-            `CREATE TABLE IF NOT EXISTS users (
+      `CREATE TABLE IF NOT EXISTS users (
                 id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
                 email VARCHAR(249) NOT NULL,
                 password VARCHAR(255) NOT NULL,
@@ -28,7 +27,8 @@ export class User {
                 PRIMARY KEY (id),
                 UNIQUE KEY email (email)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
-            `CREATE TABLE IF NOT EXISTS users_confirmations (
+
+      `CREATE TABLE IF NOT EXISTS users_confirmations (
                 id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
                 user_id INT(10) UNSIGNED NOT NULL,
                 email VARCHAR(249) NOT NULL,
@@ -41,7 +41,8 @@ export class User {
                 KEY user_id (user_id),
                 FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
-            `CREATE TABLE IF NOT EXISTS users_remembered (
+
+      `CREATE TABLE IF NOT EXISTS users_remembered (
                 id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
                 user INT(10) UNSIGNED NOT NULL,
                 selector VARCHAR(24) NOT NULL,
@@ -52,7 +53,8 @@ export class User {
                 KEY user (user),
                 FOREIGN KEY (user) REFERENCES users(id) ON DELETE CASCADE
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
-            `CREATE TABLE IF NOT EXISTS users_resets (
+
+      `CREATE TABLE IF NOT EXISTS users_resets (
                 id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
                 user INT(10) UNSIGNED NOT NULL,
                 selector VARCHAR(20) NOT NULL,
@@ -63,7 +65,8 @@ export class User {
                 KEY user_expires (user,expires),
                 FOREIGN KEY (user) REFERENCES users(id) ON DELETE CASCADE
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
-            `CREATE TABLE IF NOT EXISTS users_throttling (
+
+      `CREATE TABLE IF NOT EXISTS users_throttling (
                 bucket VARCHAR(44) NOT NULL,
                 tokens FLOAT UNSIGNED NOT NULL,
                 replenished_at INT(10) UNSIGNED NOT NULL,
@@ -71,7 +74,8 @@ export class User {
                 PRIMARY KEY (bucket),
                 KEY expires_at (expires_at)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
-            `CREATE TABLE IF NOT EXISTS user_details (
+
+      `CREATE TABLE IF NOT EXISTS user_details (
                 id INT AUTO_INCREMENT PRIMARY KEY,
                 user_id INT(10) UNSIGNED NOT NULL,
                 street VARCHAR(255),
@@ -80,14 +84,14 @@ export class User {
                 phone VARCHAR(20),
                 country VARCHAR(100),
                 FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`
-        ];
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci`,
+    ];
     for (const sql of sqlStatements) {
       try {
         await pool.query(sql);
       } catch (e) {
-        console.error('Error executing SQL:', (e as Error).message);
+        console.error("Error executing SQL:", (e as Error).message);
       }
     }
-    }
+  }
 }
