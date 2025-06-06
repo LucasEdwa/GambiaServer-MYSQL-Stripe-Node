@@ -1,4 +1,9 @@
 import { pool } from '../database/connection';
+import { Logger } from '../utils/Logger';
+
+
+
+const logger = Logger.getLogger();
 
 export class User {
   constructor(
@@ -86,7 +91,7 @@ export class User {
       try {
         await pool.query(sql);
       } catch (e) {
-        console.error('Error executing SQL:', (e as Error).message);
+        logger.error({ message: 'Error executing SQL', sql, error: (e as Error).message });
       }
     }
     }
