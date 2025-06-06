@@ -1,8 +1,7 @@
-
 import express, { Express } from "express";
 import { User } from "./src/models/User";
 import { Logger } from "./src/utils/Logger";
-import { Project } from "./src/models/project";
+import { Project } from "./src/models/Project";
 import { Donate } from "./src/models/Donate";
 
 const app: Express = express();
@@ -37,7 +36,6 @@ process.on("unhandledRejection", (reason) => {
   const project = new Project(1, "", "", "", "", "");
   await project.setupProject();
 
-    const donate = new Donate(1, 0, "", 1, "", "", "", "", "", false);
-    await donate.setupDonate();
-
+  const donate = new Donate(1, 0, "", 1, "", "", "", "", "", false);
+  await donate.setupDonate();
 })();
