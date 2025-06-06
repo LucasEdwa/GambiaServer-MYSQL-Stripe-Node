@@ -3,6 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import winston from 'winston';
 import express, { Express } from 'express';
+import { User } from './src/models/User';
 
 // Polyfill __dirname for ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -52,4 +53,10 @@ process.on('unhandledRejection', (reason) => {
     logger.error({ message: 'Unhandled Rejection', error: reason });
     process.exit(1);
 });
+
+// Create user tables at startup
+(async () => {
+    const user = new User('', '', '', '');
+    await user.setupUser();
+})();
 
