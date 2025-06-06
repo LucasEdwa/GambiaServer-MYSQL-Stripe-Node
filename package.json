@@ -2,10 +2,11 @@
   "name": "gambiaserver-mysql-stripe-node",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev index.ts"
+    "dev": "npx tsx ./index.ts"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +22,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "express": "^5.1.0",
     "mysql2": "^3.14.1",
     "winston": "^3.17.0"
   }
