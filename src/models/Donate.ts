@@ -3,6 +3,8 @@ import { Logger } from "../utils/Logger";
 
 const logger = Logger.getLogger();
 
+
+
 export class Donate {
   constructor(
     public id: number,
@@ -72,7 +74,10 @@ export class Donate {
     }
     console.log("Donations and user_payment_data tables created or already exist.");
   }
+
+
 }
+
 
 export class UserPaymentData {
   constructor(
